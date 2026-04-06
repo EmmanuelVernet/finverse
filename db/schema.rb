@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_06_170005) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_06_174032) do
   create_schema "extensions"
 
   # These are extensions that must be enabled in order to support this database
@@ -20,6 +20,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_170005) do
   enable_extension "graphql.pg_graphql"
   enable_extension "pg_catalog.plpgsql"
   enable_extension "vault.supabase_vault"
+
+  create_table "public.bank_accounts", force: :cascade do |t|
+    t.string "account_number", null: false
+    t.datetime "created_at", null: false
+    t.string "currency", null: false
+    t.decimal "current_balance", precision: 15, scale: 2, default: "0.0", null: false
+    t.bigint "customer_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_bank_accounts_on_customer_id"
+  end
 
   create_table "public.customers", force: :cascade do |t|
     t.string "company_name"
@@ -67,6 +78,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_170005) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "public.bank_accounts", "public.customers"
   add_foreign_key "public.documents", "public.onboarding_applications"
   add_foreign_key "public.onboarding_applications", "public.customers"
   add_foreign_key "public.onboarding_applications", "public.users", column: "reviewed_by_id"
