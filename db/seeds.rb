@@ -1,13 +1,3 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
 # Clean DB tables
 puts "cleaning DB tables"
 # User.delete_all
@@ -187,16 +177,29 @@ Document.create!(
   file_url: "https://example.com/passport.pdf",
   verified: false
 )
+
+Document.create!(
+  onboarding_application: orion_application,
+  document_type: "certificate_of_incorporation",
+  file_url: "https://example.com/orion_certificate.pdf",
+  verified: true
+)
+Document.create!(
+  onboarding_application: helios_application,
+  document_type: "certificate_of_incorporation",
+  file_url: "https://example.com/helios_certificate.pdf",
+  verified: true
+)
 puts "Created #{Document.count} documents"
 
 # BankAccounts
 puts "Creating Bank accounts..."
-Customer.all.each do |customer|
-  2.times do
+[ alpha_consulting, orion_trading_group, helios_energy ].each do |customer|
+  2.times do |i|
     BankAccount.create!(
       customer: customer,
-      account_number: "FR#{rand(10**22..10**23 - 1)}",
-      currency: ["EUR", "USD"].sample,
+      account_number: "ACC#{customer.company_name.first(3).upcase}-#{i + 1}",
+      currency: [ "EUR", "USD" ].sample,
       status: :active,
       current_balance: rand(1000..100_000).to_f
     )
@@ -207,30 +210,56 @@ puts "Created #{BankAccount.count} bank accounts"
 # Transactions
 puts "Creating transactions..."
 BankAccount.all.each do |account|
-  5.times do
     Transaction.create!(
       bank_account: account,
-      amount: rand(10..10_000).to_f,
+      # amount: rand(10..10_000).to_f,
+      amount: 1_000.00,
       currency: account.currency,
-      transaction_type: ["debit", "credit"].sample,
-      status: ["pending", "cleared", "failed"].sample
+      transaction_type: :credit,
+      status: :cleared
     )
-  end
+    Transaction.create!(
+      bank_account: account,
+      amount: 2_500.00,
+      currency: account.currency,
+      transaction_type: :debit,
+      status: :cleared
+    )
 end
 puts "Created #{Transaction.count} transactions"
 
 # AMLAlerts
 puts "Creating AML Alerts..."
-Transaction.all.sample(5).each do |txn|
-  AmlAlert.create!(
-    customer: txn.bank_account.customer,
-    bank_account: txn.bank_account,
-    triggering_transaction: txn,
-    reviewed_by: User.first,
-    alert_type: ["large_transfer", "unusual_pattern", "sanctioned_entity"].sample,
-    severity: ["low", "medium", "high", "critical"].sample,
-    status: ["open", "under_review", "escalated", "closed"].sample,
-    notes: "Generated for seeding"
-  )
-end
+# Transaction.all.sample(5).each do |txn|
+#   AmlAlert.create!(
+#     customer: txn.bank_account.customer,
+#     bank_account: txn.bank_account,
+#     triggering_transaction: txn,
+#     reviewed_by: User.first,
+#     alert_type: ["large_transfer", "unusual_pattern", "sanctioned_entity"].sample,
+#     severity: ["low", "medium", "high", "critical"].sample,
+#     status: ["open", "under_review", "escalated", "closed"].sample,
+#     notes: "Generated for seeding"
+#   )
+# end
+orion_account = BankAccount.where(customer: orion_trading_group).first
+orion_txn = orion_account.transactions.first
+large_txn = Transaction.create!(
+  bank_account: orion_account,
+  amount: 95_000.00,
+  currency: orion_account.currency,
+  transaction_type: :debit,
+  status: :pending
+)
+
+AmlAlert.create!(
+  customer: orion_trading_group,
+  bank_account: orion_account,
+  triggering_transaction: large_txn,
+  reviewed_by: compliance_officer,
+  alert_type: :large_transfer,
+  severity: :high,
+  status: :open,
+  notes: "Large transfer flagged for review"
+)
 puts "Created #{AmlAlert.count} AML Alerts"
