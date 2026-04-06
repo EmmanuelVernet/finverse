@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_06_164448) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_06_170005) do
   create_schema "extensions"
 
   # These are extensions that must be enabled in order to support this database
@@ -32,6 +32,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_164448) do
     t.string "registration_number"
     t.integer "risk_score"
     t.datetime "updated_at", null: false
+  end
+
+  create_table "public.documents", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "document_type", null: false
+    t.string "file_url", null: false
+    t.bigint "onboarding_application_id", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "verified", default: false, null: false
+    t.index ["onboarding_application_id"], name: "index_documents_on_onboarding_application_id"
   end
 
   create_table "public.onboarding_applications", force: :cascade do |t|
@@ -57,6 +67,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_164448) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "public.documents", "public.onboarding_applications"
   add_foreign_key "public.onboarding_applications", "public.customers"
   add_foreign_key "public.onboarding_applications", "public.users", column: "reviewed_by_id"
 
