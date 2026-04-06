@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_06_150253) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_06_160450) do
   create_schema "extensions"
 
   # These are extensions that must be enabled in order to support this database
@@ -20,6 +20,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_150253) do
   enable_extension "graphql.pg_graphql"
   enable_extension "pg_catalog.plpgsql"
   enable_extension "vault.supabase_vault"
+
+  create_table "public.customers", force: :cascade do |t|
+    t.string "company_name"
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.string "customer_type"
+    t.string "email"
+    t.string "legal_name"
+    t.integer "onboarding_status"
+    t.string "registration_number"
+    t.integer "risk_score"
+    t.datetime "updated_at", null: false
+  end
 
   create_table "public.users", force: :cascade do |t|
     t.datetime "created_at", null: false
