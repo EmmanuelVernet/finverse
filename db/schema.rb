@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_06_182250) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_06_183930) do
   create_schema "extensions"
 
   # These are extensions that must be enabled in order to support this database
@@ -20,6 +20,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_182250) do
   enable_extension "graphql.pg_graphql"
   enable_extension "pg_catalog.plpgsql"
   enable_extension "vault.supabase_vault"
+
+  create_table "public.aml_alerts", force: :cascade do |t|
+    t.integer "alert_type"
+    t.bigint "bank_account_id", null: false
+    t.datetime "created_at", null: false
+    t.bigint "customer_id", null: false
+    t.text "notes"
+    t.bigint "reviewed_by_id", null: false
+    t.integer "severity"
+    t.integer "status"
+    t.bigint "triggering_transaction_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bank_account_id"], name: "index_aml_alerts_on_bank_account_id"
+    t.index ["customer_id"], name: "index_aml_alerts_on_customer_id"
+    t.index ["reviewed_by_id"], name: "index_aml_alerts_on_reviewed_by_id"
+    t.index ["triggering_transaction_id"], name: "index_aml_alerts_on_triggering_transaction_id"
+  end
 
   create_table "public.bank_accounts", force: :cascade do |t|
     t.string "account_number", null: false
@@ -89,6 +106,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_182250) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "public.aml_alerts", "public.bank_accounts"
+  add_foreign_key "public.aml_alerts", "public.customers"
+  add_foreign_key "public.aml_alerts", "public.transactions", column: "triggering_transaction_id"
+  add_foreign_key "public.aml_alerts", "public.users", column: "reviewed_by_id"
   add_foreign_key "public.bank_accounts", "public.customers"
   add_foreign_key "public.documents", "public.onboarding_applications"
   add_foreign_key "public.onboarding_applications", "public.customers"
