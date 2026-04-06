@@ -61,7 +61,7 @@ puts "Creating customers..."
 alpha_consulting = Customer.create!(
   company_name: "Alpha Consulting",
   legal_name: "Alpha Consulting Ltd",
-  registration_number: "REG#{1000 + i}",
+  registration_number: "REG1001",
   customer_type: "SME",
   email: "alpha@alpha.com",
   onboarding_status: :approved,
@@ -72,7 +72,7 @@ alpha_consulting = Customer.create!(
 orion_trading_group = Customer.create!(
   company_name: "Orion Trading Group",
   legal_name: "Orion Trading Group Ltd",
-  registration_number: "REG#{1000 + i}",
+  registration_number: "REG1002",
   customer_type: "Enterprise",
   email: "orion@orion.com",
   onboarding_status: :approved,
@@ -83,7 +83,7 @@ orion_trading_group = Customer.create!(
 novatech_labs = Customer.create!(
   company_name: "NovaTech Labs",
   legal_name: "NovaTech Labs Ltd",
-  registration_number: "REG#{1000 + i}",
+  registration_number: "REG1003",
   customer_type: "SME",
   email: "nova@nova.com",
   onboarding_status: :pending,
@@ -94,7 +94,7 @@ novatech_labs = Customer.create!(
 baltic_export = Customer.create!(
   company_name: "Baltic Export",
   legal_name: "Baltic Export Ltd",
-  registration_number: "REG#{1000 + i}",
+  registration_number: "REG1004",
   customer_type: "SME",
   email: "baltic@baltic.com",
   onboarding_status: :rejected,
@@ -105,7 +105,7 @@ baltic_export = Customer.create!(
 helios_energy = Customer.create!(
   company_name: "Helios Energy Corp",
   legal_name: "Helios Energy Corp Ltd",
-  registration_number: "REG#{1000 + i}",
+  registration_number: "REG1005",
   customer_type: "Enterprise",
   email: "helios@helios.com",
   onboarding_status: :approved,
@@ -173,11 +173,12 @@ Document.create!(
   file_url: "https://example.com/certificate_of_incorporation.pdf",
   verified: true
 )
+# under review
 Document.create!(
   onboarding_application: novatech_application,
   document_type: "passport",
   file_url: "https://example.com/passport.pdf",
-  verified: true
+  verified: false
 )
 # rejected companies
 Document.create!(
