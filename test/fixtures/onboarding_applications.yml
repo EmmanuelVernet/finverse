@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  status: 1
+  application_type: MyString
+  reviewed_at: 2026-04-06 18:44:48
+  reviewed_by: one
+  documents_verified: false
+  rejection_reason: MyText
+
+two:
+  customer: two
+  status: 1
+  application_type: MyString
+  reviewed_at: 2026-04-06 18:44:48
+  reviewed_by: two
+  documents_verified: false
+  rejection_reason: MyText
