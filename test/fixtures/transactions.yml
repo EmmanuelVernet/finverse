@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bank_account: one
+  amount: 9.99
+  currency: MyString
+  transaction_type: 1
+  status: 1
+
+two:
+  bank_account: two
+  amount: 9.99
+  currency: MyString
+  transaction_type: 1
+  status: 1
