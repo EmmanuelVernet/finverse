@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_06_174032) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_06_182250) do
   create_schema "extensions"
 
   # These are extensions that must be enabled in order to support this database
@@ -69,6 +69,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_174032) do
     t.index ["reviewed_by_id"], name: "index_onboarding_applications_on_reviewed_by_id"
   end
 
+  create_table "public.transactions", force: :cascade do |t|
+    t.decimal "amount", precision: 15, scale: 2, null: false
+    t.bigint "bank_account_id", null: false
+    t.datetime "created_at", null: false
+    t.string "currency", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "transaction_type", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["bank_account_id"], name: "index_transactions_on_bank_account_id"
+  end
+
   create_table "public.users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email"
@@ -82,5 +93,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_174032) do
   add_foreign_key "public.documents", "public.onboarding_applications"
   add_foreign_key "public.onboarding_applications", "public.customers"
   add_foreign_key "public.onboarding_applications", "public.users", column: "reviewed_by_id"
+  add_foreign_key "public.transactions", "public.bank_accounts"
 
 end
