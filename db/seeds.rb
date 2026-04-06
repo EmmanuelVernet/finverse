@@ -4,9 +4,9 @@ puts "cleaning DB tables"
 AmlAlert.delete_all
 Transaction.delete_all
 BankAccount.delete_all
-Customer.delete_all
-OnboardingApplication.delete_all
 Document.delete_all
+OnboardingApplication.delete_all
+Customer.delete_all
 User.delete_all
 puts "Cleaned DB table data"
 
