@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_06_160450) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_06_170005) do
   create_schema "extensions"
 
   # These are extensions that must be enabled in order to support this database
@@ -34,6 +34,30 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_160450) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "public.documents", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "document_type", null: false
+    t.string "file_url", null: false
+    t.bigint "onboarding_application_id", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "verified", default: false, null: false
+    t.index ["onboarding_application_id"], name: "index_documents_on_onboarding_application_id"
+  end
+
+  create_table "public.onboarding_applications", force: :cascade do |t|
+    t.string "application_type", null: false
+    t.datetime "created_at", null: false
+    t.bigint "customer_id", null: false
+    t.boolean "documents_verified", default: false, null: false
+    t.text "rejection_reason"
+    t.datetime "reviewed_at"
+    t.bigint "reviewed_by_id"
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_onboarding_applications_on_customer_id"
+    t.index ["reviewed_by_id"], name: "index_onboarding_applications_on_reviewed_by_id"
+  end
+
   create_table "public.users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email"
@@ -42,5 +66,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_06_160450) do
     t.string "role"
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "public.documents", "public.onboarding_applications"
+  add_foreign_key "public.onboarding_applications", "public.customers"
+  add_foreign_key "public.onboarding_applications", "public.users", column: "reviewed_by_id"
 
 end
