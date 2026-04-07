@@ -560,6 +560,7 @@ DEPENDENCIES
   bundler-audit
   capybara
   debug
+  dotenv
   faker
   forest_admin_agent
   forest_admin_datasource_active_record

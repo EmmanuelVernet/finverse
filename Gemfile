@@ -42,6 +42,8 @@ gem "image_processing", "~> 1.2"
 
 gem "faker"
 
+gem 'dotenv', groups: [:development, :test]
+
 # Forest Rails Agent - 04/2026
 gem "forest_admin_rails"
 gem "forest_admin_agent"
