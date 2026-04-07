@@ -91,6 +91,7 @@ production:
     username: finverse
     password: <%= ENV["FINVERSE_DATABASE_PASSWORD"] %>
     url: <%= ENV['DATABASE_URL'] %>
+    prepared_statements: false # to fix A1 collision on heroku with supabase
   cache:
     <<: *primary_production
     database: finverse_production_cache
