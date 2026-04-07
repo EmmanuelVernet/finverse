@@ -42,6 +42,15 @@ gem "image_processing", "~> 1.2"
 
 gem "faker"
 
+gem 'dotenv', groups: [:development, :test]
+
+# Forest Rails Agent - 04/2026
+gem "forest_admin_rails"
+gem "forest_admin_agent"
+gem "forest_admin_datasource_toolkit"
+gem "forest_admin_datasource_active_record"
+gem "forest_admin_datasource_customizer"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
