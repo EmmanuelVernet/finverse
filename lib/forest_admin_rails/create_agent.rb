@@ -38,7 +38,7 @@ module ForestAdminRails
           # Reject onboarding application
           collection.action 'Reject Application', scope: :single do
             form do
-              field :rejection_reason, type: :string, label: 'Rejection Reason', is_required: true
+              field :rejection_reason, type: "String", required: true
             end
 
             execute do
