@@ -3,7 +3,7 @@ module ForestAdminRails
     module Customers
       def self.customize(agent)
         # risk level badge
-        agent.collection :customers do |collection|
+        agent.collection :Customer do |collection|
           collection.computed_field :risk_level,
             type: 'String',
             depends_on: [:risk_score] do |records|
