@@ -22,6 +22,7 @@ module ForestAdminRails
       # require submodules for customizations
       require_relative 'collections/customers'
       require_relative 'collections/onboarding_applications'
+      require_relative 'collections/aml_alerts'
 
       # SMART ACTIONS
       # Onboarding actions
@@ -151,6 +152,7 @@ module ForestAdminRails
       # Smart fields
       Collections::Customers.customize(@create_agent)
       Collections::OnboardingApplications.customize(@create_agent)
+      Collections::AmlAlerts.customize(@create_agent)
     end
   end
 end

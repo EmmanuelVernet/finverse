@@ -70,6 +70,22 @@
       "fields": [
         {
           "defaultValue": null,
+          "enums": [],
+          "field": "account_number",
+          "integration": null,
+          "inverseOf": null,
+          "isFilterable": false,
+          "isPrimaryKey": false,
+          "isReadOnly": true,
+          "isRequired": false,
+          "isSortable": true,
+          "isVirtual": false,
+          "reference": null,
+          "type": "String",
+          "validations": []
+        },
+        {
+          "defaultValue": null,
           "enums": [
             "large_transfer",
             "sanctioned_entity",
@@ -136,6 +152,22 @@
           "reference": "Customer.id",
           "relationship": "BelongsTo",
           "type": "Number",
+          "validations": []
+        },
+        {
+          "defaultValue": null,
+          "enums": [],
+          "field": "customer_name",
+          "integration": null,
+          "inverseOf": null,
+          "isFilterable": false,
+          "isPrimaryKey": false,
+          "isReadOnly": true,
+          "isRequired": false,
+          "isSortable": true,
+          "isVirtual": false,
+          "reference": null,
+          "type": "String",
           "validations": []
         },
         {
