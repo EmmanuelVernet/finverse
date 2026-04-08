@@ -702,7 +702,53 @@
       "segments": []
     },
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "OnboardingApplication-0-approve-application",
+          "name": "Approve Application",
+          "submitButtonLabel": null,
+          "description": null,
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/OnboardingApplication/0/approve-application",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {
+            "load": false,
+            "change": ["changeHook"]
+          }
+        },
+        {
+          "id": "OnboardingApplication-1-reject-application",
+          "name": "Reject Application",
+          "submitButtonLabel": null,
+          "description": null,
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/OnboardingApplication/1/reject-application",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [
+            {
+              "description": null,
+              "isRequired": true,
+              "isReadOnly": false,
+              "field": "rejection_reason",
+              "label": "rejection_reason",
+              "widgetEdit": null,
+              "type": "String",
+              "defaultValue": null
+            }
+          ],
+          "hooks": {
+            "load": false,
+            "change": ["changeHook"]
+          }
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,

@@ -20,7 +20,7 @@ module ForestAdminRails
     # smart actions customizations
     def self.customize
       # @create_agent.add_datasource....
-      @create_agent.collection :onboarding_applications do |collection|
+      @create_agent.collection :OnboardingApplication do |collection|
           # approve onboarding application
           collection.action 'Approve Application', scope: :single do
             execute do
