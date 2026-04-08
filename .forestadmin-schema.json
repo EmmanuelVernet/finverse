@@ -9,7 +9,64 @@
   },
   "collections": [
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "AmlAlert-1-close-alert",
+          "name": "Close Alert",
+          "submitButtonLabel": null,
+          "description": null,
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/AmlAlert/1/close-alert",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [
+            {
+              "description": null,
+              "isRequired": true,
+              "isReadOnly": false,
+              "field": "notes",
+              "label": "notes",
+              "widgetEdit": null,
+              "type": "String",
+              "defaultValue": null
+            }
+          ],
+          "hooks": {
+            "load": false,
+            "change": ["changeHook"]
+          }
+        },
+        {
+          "id": "AmlAlert-0-escalate-alert",
+          "name": "Escalate Alert",
+          "submitButtonLabel": null,
+          "description": null,
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/AmlAlert/0/escalate-alert",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [
+            {
+              "description": null,
+              "isRequired": true,
+              "isReadOnly": false,
+              "field": "notes",
+              "label": "notes",
+              "widgetEdit": null,
+              "type": "String",
+              "defaultValue": null
+            }
+          ],
+          "hooks": {
+            "load": false,
+            "change": ["changeHook"]
+          }
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,
@@ -217,7 +274,76 @@
       "segments": []
     },
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "BankAccount-2-close-account",
+          "name": "Close account",
+          "submitButtonLabel": null,
+          "description": null,
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/BankAccount/2/close-account",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {
+            "load": false,
+            "change": ["changeHook"]
+          }
+        },
+        {
+          "id": "BankAccount-0-freeze-account",
+          "name": "Freeze account",
+          "submitButtonLabel": null,
+          "description": null,
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/BankAccount/0/freeze-account",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {
+            "load": false,
+            "change": ["changeHook"]
+          }
+        },
+        {
+          "id": "BankAccount-3-reopen-account",
+          "name": "Reopen account",
+          "submitButtonLabel": null,
+          "description": null,
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/BankAccount/3/reopen-account",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {
+            "load": false,
+            "change": ["changeHook"]
+          }
+        },
+        {
+          "id": "BankAccount-1-unfreeze-account",
+          "name": "Unfreeze account",
+          "submitButtonLabel": null,
+          "description": null,
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/BankAccount/1/unfreeze-account",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {
+            "load": false,
+            "change": ["changeHook"]
+          }
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,
@@ -702,7 +828,53 @@
       "segments": []
     },
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "OnboardingApplication-0-approve-application",
+          "name": "Approve Application",
+          "submitButtonLabel": null,
+          "description": null,
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/OnboardingApplication/0/approve-application",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [],
+          "hooks": {
+            "load": false,
+            "change": ["changeHook"]
+          }
+        },
+        {
+          "id": "OnboardingApplication-1-reject-application",
+          "name": "Reject Application",
+          "submitButtonLabel": null,
+          "description": null,
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/OnboardingApplication/1/reject-application",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [
+            {
+              "description": null,
+              "isRequired": true,
+              "isReadOnly": false,
+              "field": "rejection_reason",
+              "label": "rejection_reason",
+              "widgetEdit": null,
+              "type": "String",
+              "defaultValue": null
+            }
+          ],
+          "hooks": {
+            "load": false,
+            "change": ["changeHook"]
+          }
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,
