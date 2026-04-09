@@ -19,6 +19,9 @@ module ForestAdminRails
 
     # smart actions customizations
     def self.customize
+      # require submodules for Actions
+      require_relative 'actions/transactions'
+
       # require submodules for customizations
       require_relative 'collections/customers'
       require_relative 'collections/onboarding_applications'
@@ -148,6 +151,9 @@ module ForestAdminRails
           end
         end
       end
+
+      # Other Smart actions
+      Actions::Transactions.customize(@create_agent)
 
       # Smart fields
       Collections::Customers.customize(@create_agent)
