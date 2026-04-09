@@ -26,6 +26,7 @@ module ForestAdminRails
       require_relative 'collections/customers'
       require_relative 'collections/onboarding_applications'
       require_relative 'collections/aml_alerts'
+      require_relative 'collections/documents'
 
       # SMART ACTIONS
       # Onboarding actions
@@ -159,6 +160,7 @@ module ForestAdminRails
       Collections::Customers.customize(@create_agent)
       Collections::OnboardingApplications.customize(@create_agent)
       Collections::AmlAlerts.customize(@create_agent)
+      Collections::Documents.customize(@create_agent)
     end
   end
 end
