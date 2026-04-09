@@ -1153,7 +1153,67 @@
       "segments": []
     },
     {
-      "actions": [],
+      "actions": [
+        {
+          "id": "Transaction-0-mark-as-suspicious",
+          "name": "Mark as Suspicious",
+          "submitButtonLabel": null,
+          "description": null,
+          "type": "single",
+          "baseUrl": null,
+          "endpoint": "/forest/_actions/Transaction/0/mark-as-suspicious",
+          "httpMethod": "POST",
+          "redirect": null,
+          "download": false,
+          "fields": [
+            {
+              "description": null,
+              "isRequired": true,
+              "isReadOnly": false,
+              "field": "alert_type",
+              "label": "alert_type",
+              "widgetEdit": null,
+              "type": "Enum",
+              "enums": [
+                "large_transfer",
+                "unusual_pattern",
+                "sanctioned_entity"
+              ],
+              "defaultValue": null
+            },
+            {
+              "description": null,
+              "isRequired": true,
+              "isReadOnly": false,
+              "field": "severity",
+              "label": "severity",
+              "widgetEdit": null,
+              "type": "Enum",
+              "enums": [
+                "low",
+                "medium",
+                "high",
+                "critical"
+              ],
+              "defaultValue": null
+            },
+            {
+              "description": null,
+              "isRequired": false,
+              "isReadOnly": false,
+              "field": "notes",
+              "label": "notes",
+              "widgetEdit": null,
+              "type": "String",
+              "defaultValue": null
+            }
+          ],
+          "hooks": {
+            "load": false,
+            "change": ["changeHook"]
+          }
+        }
+      ],
       "fields": [
         {
           "defaultValue": null,
